@@ -20,14 +20,16 @@ class employee{
     }
     employee(QSqlRecord &record);
     virtual void print_salary_detail(QTableWidget &display)=0;
+    // 纯虚函数，用于在界面上显示工资明细
     virtual float get_net_salary_total()=0;
+    // 税后总收入
     //virtual float salary_taxed();
 };
 class management:public employee{
     public:
     management(QString &id,QString &name,QString &dept,char sex,QString &phone,float wage=0,float bonus=0)
         :employee(id,name,dept,sex,phone,wage,bonus),motivation(0.0f){
-        
+
     }
     management(QSqlRecord &record);
     float get_net_salary_total();
@@ -35,6 +37,7 @@ class management:public employee{
     //virtual float salary_taxed();
     private:
     float motivation;
+    // 激励工资
 };
 class tech:public employee{
     public:
@@ -46,6 +49,7 @@ class tech:public employee{
     tech(QSqlRecord &record);
     private:
     float skill,project_budget;
+    // 技术工资、项目工资
 };
 class sales:public employee{
     public:
@@ -57,6 +61,7 @@ class sales:public employee{
     sales(QSqlRecord &record);
     private:
     float sales_compensation;
+    // 销售提成
 
 };
 class worker:public employee{
@@ -73,10 +78,10 @@ class worker:public employee{
 };
 inline float count_overtime(int additional,float wage_base){  //考勤天数；加班天数
     return wage_base*(additional*1.5f)/21.75f;
-    // 1.5倍补偿
+    // 加班工资1.5倍补偿
 }
 inline float count_bonus(int work_days,float wage_base){
     return wage_base*(work_days-21.75f)/21.75f;
-    // 每月工作天数以21.75天计，超出的部分为绩效工资（可能为负）
+    // 每月工作天数以21.75天计（法定），超出的部分为绩效工资（可能为负）
 }
 #endif
