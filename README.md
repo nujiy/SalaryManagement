@@ -14,4 +14,4 @@ Document 中为最终报告以及组长联系方式
 
 Video中为展示视频
 
-SalaryManagement_release.rar 为发行版本的最终结果，可以直接运行
+SalaryManagement_release 为发行版本的最终结果，可以直接运行
